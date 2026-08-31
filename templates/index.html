@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certipoint | KTU Activity Point Certificate Analysis System</title>
+    <meta name="description" content="Intelligent certificate validation, duplicate detection, and KTU activity point calculation platform.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="dark-theme">
+    <!-- Background Ambient Glows -->
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <span class="brand-title">Certipoint</span>
+                    <span class="brand-subtitle">KTU Activity Point Engine • Person 3 Module</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#analyzer" class="nav-link active" id="nav-btn-analyzer">Certificate Analyzer</a>
+                <a href="#dashboard" class="nav-link" id="nav-btn-dashboard">Points Dashboard</a>
+                <a href="#rules" class="nav-link" id="nav-btn-rules">KTU Rules Matrix</a>
+                <a href="#integration" class="nav-link" id="nav-btn-integration">Person 2 Integration</a>
+            </nav>
+
+            <div class="nav-actions">
+                <div class="status-pill">
+                    <span class="pulse-dot"></span>
+                    <span>Person 3 Core: Active</span>
+                </div>
+                <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme">
+                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="badge-hero">
+                <span class="hero-chip">Person 2 ➜ Person 3 Pipeline</span>
+                <span class="hero-desc">Automated Validation, Duplicate Detection & Point Calculation</span>
+            </div>
+            <h1 class="hero-title">Automate KTU Activity Points with Instant Verification</h1>
+            <p class="hero-subtitle">
+                Validate classified certificate payloads from Person 2, enforce duplicate prevention, and dynamically map activity levels to university credits according to configurable rules.
+            </p>
+        </section>
+
+        <!-- Pipeline Flow Indicator -->
+        <div class="pipeline-tracker">
+            <div class="pipe-step completed">
+                <div class="pipe-num">1</div>
+                <div class="pipe-info">
+                    <span class="pipe-label">Person 1</span>
+                    <span class="pipe-name">OCR Text Extractor</span>
+                </div>
+            </div>
+            <div class="pipe-divider"></div>
+            <div class="pipe-step completed">
+                <div class="pipe-num">2</div>
+                <div class="pipe-info">
+                    <span class="pipe-label">Person 2</span>
+                    <span class="pipe-name">NLP Activity Classifier</span>
+                </div>
+            </div>
+            <div class="pipe-divider active"></div>
+            <div class="pipe-step active-highlight">
+                <div class="pipe-num">3</div>
+                <div class="pipe-info">
+                    <span class="pipe-label">Person 3 (Active)</span>
+                    <span class="pipe-name">Validation & Point Engine</span>
+                </div>
+            </div>
+            <div class="pipe-divider"></div>
+            <div class="pipe-step">
+                <div class="pipe-num">4</div>
+                <div class="pipe-info">
+                    <span class="pipe-label">Person 4</span>
+                    <span class="pipe-name">Transcript & Audit Log</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Certificate Analyzer -->
+        <section id="analyzer" class="content-section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Certificate Analysis Studio</h2>
+                    <p class="section-desc">Submit classified certificate data from Person 2 to calculate KTU activity points.</p>
+                </div>
+                <div class="header-tools">
+                    <button id="btn-clear-db" class="btn btn-secondary btn-sm" title="Clear in-memory duplicate database">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        Reset Duplicate DB
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Preset Selectors -->
+            <div class="preset-card">
+                <span class="preset-label">⚡ Load Quick Test Scenarios:</span>
+                <div class="preset-buttons">
+                    <button class="btn-preset active" data-preset="blood_donation">🩸 Blood Donation (Social Service)</button>
+                    <button class="btn-preset" data-preset="nss_camp">⛺ 7-Day NSS Camp (NSS / NCC)</button>
+                    <button class="btn-preset" data-preset="hackathon_winner">🏆 Hackathon Winner (Technical)</button>
+                    <button class="btn-preset" data-preset="sports_national">🏸 Sports National (Sports)</button>
+                    <button class="btn-preset" data-preset="paper_presentation">📄 Paper Presentation (Technical)</button>
+                    <button class="btn-preset" data-preset="cultural_state">🎭 Classical Dance (Cultural)</button>
+                </div>
+            </div>
+
+            <!-- Studio Grid: Input Editor vs Person 3 Output Result -->
+            <div class="studio-grid">
+                <!-- Left: Person 2 Input Payload -->
+                <div class="glass-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <span class="card-badge p2-badge">Input from Person 2</span>
+                            <h3 class="card-title">Classified Certificate Payload</h3>
+                        </div>
+                        <div class="view-tabs">
+                            <button id="tab-form" class="tab-btn active">Form View</button>
+                            <button id="tab-json" class="tab-btn">JSON View</button>
+                        </div>
+                    </div>
+
+                    <!-- Form Input View -->
+                    <form id="cert-form" class="cert-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="input-student-name">Student Name <span class="req">*</span></label>
+                                <input type="text" id="input-student-name" class="form-input" value="Jithu" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-cert-id">Certificate ID</label>
+                                <input type="text" id="input-cert-id" class="form-input" value="NSS12345" placeholder="e.g. NSS12345">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="input-activity">Activity Name <span class="req">*</span></label>
+                                <input type="text" id="input-activity" class="form-input" value="Blood Donation" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="input-organization">Organizing Body</label>
+                                <input type="text" id="input-organization" class="form-input" value="NSS Unit">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="select-category">Category <span class="req">*</span></label>
+                                <select id="select-category" class="form-input" required>
+                                    <option value="Social Service">Social Service</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="NSS / NCC">NSS / NCC</option>
+                                    <option value="Technical Event">Technical Event</option>
+                                    <option value="Cultural">Cultural</option>
+                                    <option value="Leadership / Student Governance">Leadership / Student Governance</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="select-level">Level <span class="req">*</span></label>
+                                <select id="select-level" class="form-input" required>
+                                    <option value="Participation">Participation</option>
+                                    <option value="Organizer">Organizer</option>
+                                    <option value="State Level">State Level</option>
+                                    <option value="National Level">National Level</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="input-date">Date</label>
+                                <input type="text" id="input-date" class="form-input" value="15-08-2026">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-confidence">Classifier Confidence</label>
+                                <input type="number" id="input-confidence" class="form-input" value="0.95" step="0.01" min="0" max="1">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" id="btn-submit-cert" class="btn btn-primary btn-block">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                                Run Person 3 Analysis
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Raw JSON Input View (Hidden by default) -->
+                    <div id="json-input-container" class="json-container" style="display: none;">
+                        <textarea id="raw-json-editor" class="code-editor" rows="12"></textarea>
+                        <div class="editor-actions">
+                            <button id="btn-submit-json" class="btn btn-primary btn-block">
+                                Submit JSON Payload
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Person 3 Output Result -->
+                <div class="glass-card result-card">
+                    <div class="card-header">
+                        <div class="card-header-left">
+                            <span class="card-badge p3-badge">Person 3 Output</span>
+                            <h3 class="card-title">Analysis Result & Awarded Points</h3>
+                        </div>
+                        <div id="result-status-badge" class="status-badge status-ready">
+                            Ready for Analysis
+                        </div>
+                    </div>
+
+                    <!-- Result Content Area -->
+                    <div id="result-content" class="result-body">
+                        <div class="empty-state">
+                            <div class="empty-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10 9 9 9 8 9"></polyline>
+                                </svg>
+                            </div>
+                            <h4>No Certificate Analyzed Yet</h4>
+                            <p>Click "Run Person 3 Analysis" or choose a scenario above to compute KTU activity points.</p>
+                        </div>
+                    </div>
+
+                    <!-- Raw Response JSON Collapsible -->
+                    <div class="result-raw-box">
+                        <div class="raw-header" id="raw-json-toggle">
+                            <span>Structured JSON Response</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <pre id="raw-response-json" class="raw-pre">Waiting for input...</pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Student Points Dashboard -->
+        <section id="dashboard" class="content-section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">KTU Points Summary & Credit Progress</h2>
+                    <p class="section-desc">Real-time aggregate points tracking toward KTU Degree Graduation Requirements.</p>
+                </div>
+            </div>
+
+            <!-- Stats Overview Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon emerald">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    </div>
+                    <div class="stat-data">
+                        <span class="stat-label">Total Points Earned</span>
+                        <h3 id="stat-total-points" class="stat-value">0 <span class="stat-target">/ 100 Req</span></h3>
+                    </div>
+                    <div class="stat-progress-bar">
+                        <div id="stat-progress-fill" class="progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    </div>
+                    <div class="stat-data">
+                        <span class="stat-label">Approved Certificates</span>
+                        <h3 id="stat-valid-count" class="stat-value">0</h3>
+                    </div>
+                    <span class="stat-sub">Valid Submissions</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon amber">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <div class="stat-data">
+                        <span class="stat-label">Duplicates Intercepted</span>
+                        <h3 id="stat-duplicate-count" class="stat-value">0</h3>
+                    </div>
+                    <span class="stat-sub">0 Points Awarded</span>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="stat-data">
+                        <span class="stat-label">Active Student</span>
+                        <h3 id="stat-student-name" class="stat-value">Jithu</h3>
+                    </div>
+                    <span class="stat-sub">B.Tech Engineering</span>
+                </div>
+            </div>
+
+            <!-- Activity Submission History Table -->
+            <div class="glass-card mt-4">
+                <div class="card-header">
+                    <div class="card-header-left">
+                        <h3 class="card-title">Certificate Submission Audit Log</h3>
+                    </div>
+                    <span class="table-count" id="table-log-count">0 Submissions Recorded</span>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Student</th>
+                                <th>Certificate ID</th>
+                                <th>Activity Name</th>
+                                <th>Category & Level</th>
+                                <th>Status</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body">
+                            <tr>
+                                <td colspan="7" class="table-empty">No activity submissions in this session.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: KTU Point Rules Matrix -->
+        <section id="rules" class="content-section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Configurable KTU Activity Points Matrix</h2>
+                    <p class="section-desc">Manage activity category mapping and point allocations.</p>
+                </div>
+                <div class="header-tools">
+                    <button id="btn-reset-rules" class="btn btn-secondary btn-sm">Reset to Default Rules</button>
+                    <button id="btn-edit-rules-json" class="btn btn-primary btn-sm">Edit Rules JSON</button>
+                </div>
+            </div>
+
+            <!-- Important Disclaimer Banner -->
+            <div class="alert-box alert-info">
+                <div class="alert-icon">ℹ️</div>
+                <div class="alert-body">
+                    <strong>Configurable Rules Structure Notice:</strong>
+                    <span>The point values shown below are sample placeholders for development and testing. When official KTU point guidelines are released, you can update them here or inject custom rule dictionaries without modifying Python code logic.</span>
+                </div>
+            </div>
+
+            <!-- Rules Grid -->
+            <div id="rules-matrix-grid" class="rules-grid">
+                <!-- Dynamically populated via app.js -->
+            </div>
+        </section>
+
+        <!-- Section 4: Person 2 Integration Guide -->
+        <section id="integration" class="content-section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Connecting Person 2 ➜ Person 3</h2>
+                    <p class="section-desc">Simple, clean Python interface designed for seamless team handoff.</p>
+                </div>
+            </div>
+
+            <div class="integration-grid">
+                <div class="glass-card">
+                    <h3 class="card-title mb-2">Python Module Integration</h3>
+                    <p class="text-muted mb-4">Person 2 simply imports `analyse_certificate` and passes the structured dictionary:</p>
+                    
+                    <div class="code-block">
+                        <button class="copy-btn" data-target="code-python">Copy</button>
+                        <pre id="code-python"><code>from person3_validation import analyse_certificate
+
+# Input dictionary from Person 2
+person2_output = {
+    "student_name": "Jithu",
+    "activity": "Blood Donation",
+    "organization": "NSS Unit",
+    "date": "15-08-2026",
+    "certificate_id": "NSS12345",
+    "category": "Social Service",
+    "level": "Participation",
+    "confidence": 0.95
+}
+
+# Person 3 performs validation, duplicate check & point calculation
+result = analyse_certificate(person2_output)
+print(result)</code></pre>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <h3 class="card-title mb-2">REST API Endpoint</h3>
+                    <p class="text-muted mb-4">You can also call Person 3 via HTTP POST from any language or framework:</p>
+                    
+                    <div class="code-block">
+                        <button class="copy-btn" data-target="code-curl">Copy</button>
+                        <pre id="code-curl"><code>curl -X POST http://localhost:5000/api/analyse \
+  -H "Content-Type: application/json" \
+  -d '{
+    "student_name": "Jithu",
+    "activity": "Blood Donation",
+    "certificate_id": "NSS12345",
+    "category": "Social Service",
+    "level": "Participation"
+  }'</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rules JSON Modal -->
+    <div id="rules-modal" class="modal-backdrop" style="display: none;">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title">Edit KTU Point Rules JSON</h3>
+                <button id="modal-close-btn" class="icon-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted mb-2">Modify the category and level points below. Changes will immediately take effect for all subsequent certificate analyses.</p>
+                <textarea id="modal-rules-textarea" class="code-editor" rows="15"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-cancel-btn" class="btn btn-secondary">Cancel</button>
+                <button id="modal-save-btn" class="btn btn-primary">Save Rules</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
